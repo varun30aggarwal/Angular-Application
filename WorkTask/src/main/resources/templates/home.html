@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="errandify">
+
+<head>
+    <meta charset="utf-8"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <meta name="description" content=""></meta>
+    <meta name="author" content=""></meta>
+ <script src="js/vendor/jquery/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+      <script src="js/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/custom/jqBootstrapValidation.js"></script>
+    <script src="js/custom/contact_me.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+
+  <script src="http://code.angularjs.org/1.2.16/angular-route.min.js"></script>
+  <script src="js/vendor/sweetalert.min.js"></script>
+  <script src="js/js/ng-cookies.js"></script> 
+    <script src="js/vendor/ng-table.js"></script> 
+ <script src="js/custom/errandify.js"></script>
+<script src="js/js/fusioncharts.js"></script>
+<script src="js/js/fusioncharts.charts.js"></script>
+ <script src="js/js/angular-fusioncharts.min.js"></script>
+
+
+    <title>Errandify|Home</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="js/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
+
+    <!-- Theme CSS -->
+    <link href="/css/freelancer.css" rel="stylesheet"></link>
+      <link href="/css/sweetalert.css" rel="stylesheet"></link>
+     <link href="/css/ng-table-min.css" rel="stylesheet"></link>
+    <!-- Custom Fonts -->
+    <link href="js/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"></link>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"></link>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css"></link>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+     <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+</head>
+
+<body id="page-top" class="index" >
+
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom" ng-hide="header">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="#page-top">Errandify</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#login">Login</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#portfolio">Features</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#about">About</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#contact">Contact</a>
+                    </li>
+                     
+                    
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="row" >
+                <div class="col-lg-6  col-md-6 hidden-sm hidden-xs background" ng-hide="view">
+                   
+                
+                 </div> 
+                 <div class="col-lg-6  col-md-6 col-sm-12 col-xs-12">
+                 
+                   <!-- Login Section -->
+				 
+  				    <div ng-view></div>
+      
+                 </div>
+                   
+            </div>
+            <div class="row" >
+           
+            <div class="col-lg-12 hidden-xs intro-text" id="errandify" ng-hide="errandify">
+                        <span class="name">Start Using Errandify</span>
+                       
+                        <span class="skills">We help you manage your daily errands!!</span>
+            
+            
+            </div>
+        </div>
+        </div>
+        
+    
+    
+    </header>
+
+    
+          <!-- Portfolio Grid Section -->
+      <div class="portfolio" ng-include="'view/homefunctions/Portfolio.html'" ng-hide="portfolio">
+        </div>
+    
+  
+    <div class="about" ng-include="'view/homefunctions/About.html'" ng-hide="about">
+        </div>
+
+  
+     <div class="contact" ng-include="'view/homefunctions/Contact.html'" ng-hide="contact">
+        </div>
+
+   
+    
+<div ng-include="'view/homefunctions/footer.html'">
+        </div> 
+        
+        
+        
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+
+
+    <!-- jQuery -->
+   
+
+    <!-- Bootstrap Core JavaScript -->
+   
+
+    <!-- Theme JavaScript -->
+    <script src="js/custom/freelancer.js"></script>
+
+  <script src="js/custom/authCtrl.js"></script>
+
+        <script src="js/custom/task2.js"></script>
+   
+</body>
+
+</html>

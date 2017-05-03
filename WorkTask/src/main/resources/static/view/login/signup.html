@@ -1,0 +1,114 @@
+<section class="no-padding" id="login">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Sign Up</h2>
+                    <hr class="star-custom"></hr>
+                </div>
+            </div>
+       
+       
+        
+            <div id="login-box" class="login-box visible widget-box no-border">
+                <div class="widget-body">
+                    <div class="widget-main">
+                     
+                        <br/>
+                        <form name="signupForm" class="form-horizontal" role="form"  novalidate>
+                            <div class="form-group">
+                                <label class="col-sm-3 hidden-xs control-label no-padding-right" for="email">Email</label>
+                                <div class="col-sm-7 col-xs-10 col-md-offset-0 col-xs-offset-1">
+                                    <span class="block input-icon input-icon-right">
+                                        <input type="email" 
+                                        class="form-control"
+                                         placeholder="Email" 
+                                         name="email" 
+                                         ng-model="signup.email" 
+                                         ng-required="true" focus/>
+                                        <!-- span ng-show="signupForm.email.$error.email" class="help-inline">Email is not valid</span-->
+                                        <small class="errorMessage" data-ng-show="signupForm.email.$dirty && signupForm.email.$invalid">Please enter a valid email</small> 
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 hidden-xs control-label no-padding-right" for="password">Password</label>
+                                <div class="col-sm-7 col-xs-10 col-md-offset-0 col-xs-offset-1">
+                                    <span class="block input-icon input-icon-right">
+                                <input type="password" 
+                                class="form-control" 
+                                name = "password" 
+                                placeholder="Password" 
+                                ng-model="signup.password" 
+                                ng-required="true"/>
+                                <small class="errorMessage" data-ng-show="signupForm.password.$dirty && signupForm.password.$invalid"> Enter Password.</small>
+                            </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 hidden-xs control-label no-padding-right" for="password2">Confirm Password</label>
+                                <div class="col-sm-7 col-xs-10 col-md-offset-0 col-xs-offset-1">
+                                    <span class="block input-icon input-icon-right">
+                                <input type="password" 
+                                class="form-control" 
+                                name="password2" 
+                                placeholder="Repeat Password" 
+                                ng-model="signup.password2" 
+                                password-match="signup.password" 
+                                ng-required="true"
+                                data-password-verify="signup.password"/>                              
+                                
+                               <small class="errorMessage" data-ng-show="signupForm.password2.$error.passwordVerify"> Password do not match.</small>
+
+                            </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 hidden-xs control-label no-padding-right" for="name">First Name</label>
+                                <div class="col-sm-7 col-xs-10 col-md-offset-0 col-xs-offset-1">
+                                    <span class="block input-icon input-icon-right">
+                                <input type="text" 
+                                class="form-control" 
+                                placeholder="First Name" 
+                                ng-model="signup.name" 
+                                ng-required="true"/>
+                            </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 hidden-xs control-label no-padding-right" for="phone">Last Name</label>
+                                <div class="col-sm-7 col-xs-10 col-md-offset-0 col-xs-offset-1">
+                                    <span class="block input-icon input-icon-right">
+                                <input type="text" class="form-control" placeholder="Last Name" name="l_name" ng-model="signup.l_name" ng-required="true"/>
+                            </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 hidden-xs control-label no-padding-right" for="address">Group Code</label>
+                                <div class="col-sm-7 col-xs-10 col-md-offset-0 col-xs-offset-1">
+                                    <span class="block input-icon input-icon-right">
+                                <input type="text" 
+                                class="form-control" 
+                                placeholder="Enter a group code." 
+                                ng-model="signup.role" ng-required="true" />
+                            </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                
+                                <div class="col-sm-4 col-md-3 col-xs-4 col-sm-offset-4 col-md-offset-5 col-xs-offset-4">
+                                    <button type="submit" class=" btn btn-block btn-success" ng-click="signUp(signup)" data-ng-disabled="signupForm.$invalid">
+                                        Sign Up
+                                    </button>
+                                <p style="font-size:90%">Already have an account? <a href="#/login">SignIn</a></p>
+                                </div>
+                                
+                            </div>
+                            </fieldset>
+                           
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+</section>
+<!-- /.page-content -->

@@ -1,0 +1,207 @@
+<html>
+   <body>
+      <!-- Navigation -->
+      <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+         <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+               <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+               </button>
+               <a class="navbar-brand" href="/home">Errandify</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+               <ul class="nav navbar-nav navbar-right">
+                  <li class="page-scroll">
+                     <a href="/home">Logout</a>
+                  </li>
+                  <li class="hidden">
+                     <a href="#page-top"></a>
+                  </li>
+               </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+         </div>
+         <!-- /.container-fluid -->
+      </nav>
+      <!-- Navigation -->    
+      <div class="container" style="padding-top: 0px !important">
+         <div class="row">
+            <div class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 col-sm-12 col-xs-12" style="border-bottom:1px solid #ccc">
+               <img alt="minon-img" class="img img-responsive pull-right"
+                  src="images/login/minion_top.png"
+                  style="margin-bottom: 0px; width: 25%">
+                  <span class="bubble"></span>
+            </div>
+         </div>
+         <div class="tab" ng-controller="TabController as tabs">
+            <ul class="nav nav-pills col-md-offset-3">
+               <li ng-class="{active:tabs.isSet(3)}" class="col-md-2 col-sm-4 col-xs-4 padder-2">
+                  <a href ng-click="tabs.setTab(3)">Add Task</a>
+               </li>
+               <li ng-class="{active:tabs.isSet(2)}" class="col-md-3 col-sm-4 col-xs-4 padder-2">
+                  <a href ng-click="tabs.setTab(2)">Update Status</a>
+               </li>
+               <li ng-class="{active:tabs.isSet(4)}" class="col-md-3 col-sm-4 col-xs-4 padder-2">
+                  <a href ng-click="tabs.setTab(4)">Report Card</a>
+               </li>
+            </ul>
+            
+            <div ng-show="tabs.isSet(2)" ng-controller="retriveCtrl"
+               ng-init="refreshData()">
+               <div class="row">
+                  <div
+                     class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 col-sm-12 col-xs-12">
+                     <div ng-cloak="" class="datepickerdemoBasicUsage">
+                        <md-content layout-padding="" style="padding:4px">
+                           <div layout-gt-xs="row">
+                              <div flex-gt-xs="" >
+                                 <md-datepicker style="color:#1275BC" ng-model="myDate1" md-placeholder="START DATE"></md-datepicker>
+                              </div>
+                              <div flex-gt-xs="" >
+                                 <md-datepicker style="color:#1275BC" ng-model="myDate2" md-placeholder="END DATE"></md-datepicker>
+                              </div>
+                              <div flex-gt-xs="">
+                                 <input button class="btn btn-success pad-top-mob" ng-click="retriveTask()"
+                                    type="submit"></input>
+                              </div>
+                           </div>
+                        </md-content>
+                     </div>
+                  </div>
+               </div>
+               <div class="row" ng-repeat="user in Details | orderBy:'-due_date'">
+                  <div
+                     class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 col-sm-12 col-xs-12 row-update">
+                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" title="'Work'">{{user.taskName}}</div>
+                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6"
+                        title="'Due Date'">{{user.due_date}}</div>
+                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" title="'Status'">
+                        <select ng-model="user.status"
+                           ng-options="item for item in names.values"
+                           ng-change="updatetask(user)" class="button-update" ng-disabled="!check(user.due_date)">
+                        </select>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div ng-show="tabs.isSet(3)" ng-controller="assign">
+               <div class="row">
+                  <div   ng-repeat="personalDetail in personalDetail1"
+                     class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 col-sm-12 col-xs-12">
+                     <form ng-submit="addNew(1)">
+                        <div ng-cloak="" class="datepickerdemoBasicUsage">
+                           <md-content layout-padding="" style="background-color:lightyellow !important;">
+                              <div layout-gt-xs="row">
+                              <div flex-gt-xs="">
+                                 <!--  <h4><font color="#1275BC">Start Date</font></h4>-->
+                                 <md-datepicker style="color:#1275BC" ng-model="personalDetail.startdate" md-min-date="minDate" md-placeholder="START DATE"></md-datepicker>
+                              </div>
+                              <div flex-gt-xs="">
+                                 <!-- <h4><font color="#1275BC">End Date</font></h4> -->
+                                 <md-datepicker style="color:#1275BC" ng-model="personalDetail.enddate" md-placeholder="END DATE"></md-datepicker>
+                              </div>
+                              </div>
+                           </md-content>
+                        </div>
+                        <div class="form-group ">
+                           <input class="form-control" id="task_name"
+                              ng-model="personalDetail.module" placeholder="TASK NAME"
+                              type="text" />
+                        </div>
+                       
+                        <div class="form-group ">
+                           <div class="pull-left">
+                              <label class="control-label " for="frequency">
+                              FREQUENCY </label>
+                           </div>
+                           <div>
+                              <select class="stylish-select"
+                                 ng-model="personalDetail.frequency"
+                                 ng-options="item for item in names">
+                              </select>
+                           </div>
+                        </div>
+                        <div class="form-group ">
+                           <div class="pull-left">
+                              <label class="control-label " for="participants">
+                              PARTICIPANTS </label>
+                           </div>
+                           <div>
+                              <md-input-container style="display:block">
+                                 <md-select
+                                    class="stylish-select" style="border-radius:5px;" ng-model="personalDetail.users.uid"
+                                    multiple="">
+                                    <md-optgroup label="Names">
+                                       <md-option ng-value="topping.uid"
+                                          ng-repeat="topping in personalDetail.users">{{topping.uidname}}</md-option>
+                                    </md-optgroup>
+                                 </md-select>
+                              </md-input-container>
+                           </div>
+                        </div>
+                        <!--  div class="form-group ">
+                           <div class="pull-left">
+                           	<label class="control-label " for="multiple"> MULTIPLE
+                           		PARTICIPANTS </label>
+                           </div>
+                           <div>
+                           	<select class="stylish-select"
+                           		ng-model="personalDetail.multiple"
+                           		ng-options="item for item in multiple">
+                           	</select>
+                           </div>
+                           </div>-->
+                        </br>
+                        <div class="form-group">
+                           <input ng-hide="!personalDetail1.length" type="button"
+                              class="btn btn-block btn-success "
+                              ng-click="addstatus(personalDetail)" value="Save">
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+            <div ng-show="tabs.isSet(4)" ng-controller="showChart">
+               <div class="row">
+                  <div
+                     class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 col-sm-12 col-xs-12">
+                     <div ng-cloak="" class="datepickerdemoBasicUsage">
+                        <md-content layout-padding="" style="padding:4px">
+                           <div layout-gt-xs="row">
+                              <div flex-gt-xs="">
+                                 <md-datepicker style="color:#1275BC" ng-model="ReportDate1" md-placeholder="START DATE"></md-datepicker>
+                              </div>
+                              <div flex-gt-xs="">
+                                 <md-datepicker style="color:#1275BC" ng-model="ReportDate2" md-placeholder="END DATE"></md-datepicker>
+                              </div>
+                              <div flex-gt-xs="">
+                                 <input button class="btn btn-success pad-top-mob" ng-click="retriveReport()"
+                                    type="submit"></input>
+                              </div>
+                           </div>
+                        </md-content>
+                     </div>
+                  </div>
+               </div>
+<div class="row" style="margin-top:10px">
+<div
+  class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 col-sm-12 col-xs-12">
+ <fusioncharts  
+ ng-hide="demo" id="mychartcontainer" chartid="angularChart"
+ type="column2d" 
+ dataSource="{{dataSource}}" width="100%"
+
+ events="events">Awesome Chart on its way!
+ 
+ 
+ </fusioncharts>
+ </div>
+ </div>
+     
+            </div>
+         </div>
+      </div>
+   </body>
+</html>
